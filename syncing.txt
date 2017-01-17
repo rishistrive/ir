@@ -1,0 +1,48 @@
+Goals:
+
+Syncing should be invisible to user unless they absolutely NEED to see something
+Syncing should not waste server resources
+Syncing should not slow down the use of the application
+Syncing should occur as rapidly as possible
+Syncing should not cause data loss
+Syncing should not waste customer's data
+
+Sync states:
+1.  Mobile device has internet connection
+2.  Mobile device had no internet connection
+(web server is assumed to always be online)
+
+Mobile application can:
+
+	Create / update / delete
+
+	inspections
+	sections
+	statements
+	images
+	answer values
+	
+Scenarios:
+
+1.  Initial successful application sign in
+2.  Create / update / delete a _whatever_ with application
+3.  While in application, a _whatever_ is created / updated / deleted via the website
+
+In application's core data store, a _whatever_ web_id should be stored.
+
+
+Scenario 1 - Initial successful application sign in
+
+Probably want a separate controller action for this to pull in everything (or at least the major components)
+
+Scenario 2 - Create / update / delete a _whatever_ with application
+
+Attempt to send immediately to server.  If server call fails, place command in a queue for later ordered execution.
+
+Scenario 3 - While in application, a _whatever_ is created / updated / deleted via the website
+
+How do we check for these sorts of things?  Every X unit of time?  Every view load?  Can server push these instead of having application pull them?  Maybe just via a pull to refresh mechanism?
+
+Pull to refresh + view load makes sense.  The view loads should send queries that execute very quickly - "get all sections for inspection"
+
+

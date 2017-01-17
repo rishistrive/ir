@@ -1,0 +1,61 @@
+<div id="template-container" class="template view" data-id="<%= @template.id %>">
+	<div class="row">
+		<div class="col-sm-3">
+			<a href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+		</div>
+		<div class="template-name-display"> 
+			<div class="col-sm-5">
+				<div class="template-name-container"><span class="template-name"><%= @template.name %></span><a class="edit-template-name btn btn-link" role="button" title="Edit the template's name">Edit</a></div>
+			</div>
+			<div class="col-sm-1">
+			</div>
+		</div>
+		<div class="edit-template-name-container">
+			<div class="col-sm-6 form-inline">
+				<div class="form-group">
+					<label for="template-name-text-editor">Template name</label>
+					<input type="text" id="template-name-text-editor" class="form-control" value="<%= @template.name %>">
+				</div>
+				<button class="btn btn-sm btn-primary save-template-name-update">Save</button><span class="between-button-text">or</span><button class="btn btn-sm btn-link cancel-template-name-update">Cancel</button>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<a class="btn btn-primary pull-right" role="button" target="_blank" href="/inspection_templates/copy/<%= @template.id %>">Create a new copy of this template</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3 hidden-xs">
+			<nav id="sidebar-nav" class="" data-spy="affix" data-offset-top="128" data-offset-bottom="200">
+				<ul class="top-section nav list-unstyled">
+				<% 
+				firstSection = true
+				@template.sections.sorted.each do |section| 
+					 if section.level == 0 
+						 if firstSection 
+							firstSection = false
+						 else
+							%></ul></li><%
+						 end %>
+						 <li>
+							 <a href="#section<%= section.id %>"><%= section.section_type.name.truncate(35, separator: ' ') %></a>
+							 <ul class="list-unstyled sub-section">
+					<% elsif section.level == 1 %>
+						<li><a href="#section<%= section.id %>"><%= section.section_type.name.truncate(35, separator: ' ')  %></a></li>
+					<% else %>
+						<li><a href="#section<%= section.id %>">&nbsp;&nbsp;<%= section.section_type.name.truncate(35, separator: ' ')  %></a></li>
+					<% end %>
+				<% end %>
+						</ul>
+					</li>
+					<li><hr></li>
+					<li><a class="" href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-sm-9">
+			<% @template.sections.sorted.each do |section| %>
+				<%= render "layouts/display_section", section: section, template_flag: true, photo_flag: false %>
+			<% end %>
+		</div>
+	</div>
+</div>

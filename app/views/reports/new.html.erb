@@ -1,0 +1,52 @@
+<a href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+<h2>Create a new report</h2>
+
+
+<form class="new_report" id="new_report" action="/reports/create" accept-charset="UTF-8" method="post">
+	<%= token_tag nil %>
+	<div class="form-group">
+		<label for="client_name">Client name</label>
+		<input type="text" class="form-control" name="client_name" id="client_name">
+	</div>
+	<div class="form-group">
+		<label for="address_line_1">Address</label>
+		<input type="text" class="form-control" name="address_line_1" id="address_line_1">
+	</div>
+	<div class="form-group">
+		<label for="_city">City</label>
+		<input type="text" class="form-control" name="city" id="city">
+	</div>
+	<div class="form-group">
+		<label for="state">State</label>
+		<input type="text" class="form-control" name="state" id="state" value="TX">
+	</div>
+	<div class="form-group">
+		<label for="state">Zip</label>
+		<input type="text" class="form-control" name="zip" id="zip">
+	</div>
+	<div class="form-group">
+		<label for="inspection_template_id">Template</label>
+		<select class="form-control" name="inspection_template_id" id="inspection_template_id">
+			<%= 
+			@inspector.inspection_templates.each do |template|
+			%>
+			<option value="<%= template.id %>"><%= template.name %></option>
+			<%
+			end
+			%>
+		</select>
+	</div>
+	<!--
+	<div class="form-group">
+		<label for="report_report_type_id">Report Type</label>
+		<%= collection_select(:report, :report_type_id, ReportType.all, :id, :name, {}, {:class => "form-control"}) %>		
+	</div>
+	-->
+	<div class="form-group">	
+		<input type="submit" class="btn btn-primary" value="Create report" />
+		<span class="between-button-text">or</span>
+		<a href="/" class="btn btn-link" >Cancel</a>
+	</div>	
+</form>
+
+

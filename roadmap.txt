@@ -1,0 +1,79 @@
+Topics for discussion:
+
+- review UI of template / report statement editing
+- review front page features
+- look at statement library page designs
+- do we need to account for > 3 levels of sections?
+
+- discuss development plans (see next tasks list below)
+
+Next tasks:
+
+Front end web UI stuff:
+
+- add report header stuff
+- add answers to report view
+- add addendums
+- clean up statement search editing:
+	- properly default: section, statement type, list type
+	- properly refresh: answers after a save
+
+PDF stuff:
+
+- you name it
+
+
+Sometime tasks (not urgent):
+- add ability to add sub sections to a template section
+- add ability to reorder statements within a section's statement type
+- add photo reordering
+- figure out how DB should model addendums
+- think about how to effectively lock down the REI 7-4 specified sections (maybe a lock flag on the template section?)
+- make feedback block appear centered
+- think about ramifications of allowing the editing of statements within a template - how would that affect the inspector's library of statements?
+	maybe the app prompts you after a save is complete about if you want to apply this edit to the statement in your library or just save it as a new statement?
+- add search results highlighting to search engine for statement library
+
+
+Done:
+
+6/15/15
+
+- add statement controls w/ hover effect to statement search engine
+
+6/16/15
+
+- rework front page
+
+6/17/15
+
+- set up all statement tasks (create, update, delete)
+- figure out solution to problems stemming from template statements existing alongside the statement library (relation where: inspector_statement has many statements, and statements belongs to an inspector_statement)
+
+6/23/15
+
+- install prawn to create PDFs
+
+6/24/15
+
+- set up rails to download a generated PDF
+- PDF dev
+
+6/25/15
+
+- add inspector id to answer lists
+- add relationship between statements and inspector statements
+- modify statement search to handle answer values
+
+6/30/15
+
+- answer value CRUD
+
+7/11/15
+
+- on add photo, make photo and caption appear in report view instantly
+
+7/12/15
+
+- properly sort statements by statement type
+- if a deficency is noted, check "D" if it's not already checked

@@ -1,0 +1,2 @@
+module InspectorStatementsHelper
+end

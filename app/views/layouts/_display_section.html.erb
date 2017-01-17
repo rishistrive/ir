@@ -1,0 +1,239 @@
+<div class="section-container level-<%= section.level %>" id="<%= section.id %>" data-section-id="<%= section.id %>" data-section-type-id="<%= section.section_type.id %>">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="section-name"><a id="section<%= section.id %>"><%= section.section_type.title %></a></div>
+		</div>
+	</div>
+	<% if section.level > 0 %>
+		<div class="row">
+			<div class="col-sm-12">
+				<% if template_flag %>
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a href="#<%= section.id %>-contents" aria-controls="Contents" role="tab" data-toggle="tab">Contents</a></li>
+						<% if section.subsections.count == 0 %>
+						<li role="presentation"><a href="#<%= section.id %>-todos" aria-controls="To-dos" role="tab" data-toggle="tab">To-dos</a></li>
+						<!--<li role="presentation"><a href="#<%= section.id %>-cyas" aria-controls="CYAs" role="tab" data-toggle="tab">CYAs</a></li>-->
+						<li role="presentation"><a href="#<%= section.id %>-library" aria-controls="Libarary" role="tab" data-toggle="tab">Statement Library</a></li>
+						<% end %>
+					</ul>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="<%= section.id %>-contents">
+							<div class="panel">
+								<div class="panel-body">
+				<% else %>
+					<div id="<%= section.id %>-contents">
+				<% end %>
+						<% if section.level == 1 %>
+							<div class="col-sm-3 col-lg-2">
+								<div class="checkbox-container">
+									<div class="row">
+										<div class="col-xs-3 text-center">
+											<label for="inspected-<%= section.id %>">I</label>
+										</div>
+										<div class="col-xs-3 text-center">
+											<label for="not-inspected-<%= section.id %>">NI</label>
+										</div>
+										<div class="col-xs-3 text-center">
+											<label for="not-present-<%= section.id %>">NP</label>
+										</div>
+										<div class="col-xs-3 text-center">
+											<label for="deficient-<%= section.id %>">D</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-3 text-center">
+											<input type="checkbox" class="inspected" id="inspected-<%= section.id %>" <%= section.inspected ? "checked" : "" %>>
+										</div>
+										<div class="col-xs-3 text-center">
+											<input type="checkbox" class="not-inspected" id="not-inspected-<%= section.id %>" <%= section.not_inspected ? "checked" : "" %>>
+										</div>
+										<div class="col-xs-3 text-center">
+											<input type="checkbox" class="not-present" id="not-present-<%= section.id %>" <%= section.not_present ? "checked" : "" %>>
+										</div>
+										<div class="col-xs-3 text-center">
+											<input type="checkbox" class="deficient" id="deficient-<%= section.id %>" <%= section.deficient ? "checked" : "" %>>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-9 col-lg-10 statements-container">
+
+						<% else %>
+							<div class="col-sm-12 statements-container">
+						<% end %>
+							<% 
+							if section.level > 0 and section.subsections.count == 0 
+								current_statement_type_name = nil
+								@statement_types.each do |statement_type|
+									%>
+									<div class="statement-type-container" data-statement-type-id="<%= statement_type.id %>">
+										<div class="statement-type-label" data-statement-type-id="<%= statement_type.id %>"><%= statement_type.name.pluralize.upcase %></div>
+										<div class="sortable">
+									<%
+									# todo: make loop below tighter.  Don't go over all statements, only the correct subset.  Should elimiate if in the loop
+									section.statements.each do |statement|
+										if statement.statement_type.id == statement_type.id then
+											%>
+											<%= render "layouts/display_statement", statement: statement %>
+											<%
+										end 
+									end
+									%>
+										</div>
+									</div>
+									<%
+								end
+						
+								if photo_flag then
+									%>
+									<div class="statement-type-label">PHOTOS</div>
+									<div class="image-thumbnails-container image-sortable">
+									<%
+									section.images.each do |image|
+									%>		
+										<div id="image-<%= image.id %>" class="image-container" data-url="<%= image.image.url(:medium) %>" data-image-id="<%= image.id %>">
+											<%= image_tag image.image.url(:thumb) %><br>
+											<span class="image-caption small"><%= image.caption %></span>
+										</div>
+									<%
+									end
+									%>
+									</div>
+									<%
+								end 
+								%>
+								<div class="add-buttons-container">
+									<a class="add-statement">Add statement</a>
+									<% if photo_flag %>
+										<a class="add-photo">Add photo</a>
+									<% end %>
+								</div>
+								<%= render "layouts/add_statement", section: section %>
+								<% if photo_flag then %>
+									<%= render "layouts/add_photo", section: section %>
+								<% end %>
+							<% end %>
+						</div>
+					<% if template_flag %>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="<%= section.id %>-todos">
+						<div class="todo-sortable-container">
+						<% section.to_dos.each do |to_do| %>
+							<div class="todo-container" data-id="<%= to_do.id %>">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-sm-5"><%= to_do.content %></div>
+											<div class="col-sm-5 text-muted"><%= @todo_types.find(to_do.to_do_type_id).name %></div>
+											<div class="col-sm-2 text-right"><a class="delete-todo" title="Delete to do"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></div>
+										</div>
+									</div>
+									<% if to_do.to_do_type_id != 3 #TODO: hardcoded ID %>
+										<div class="panel-body">
+										<% if to_do.answers.count > 0 %>
+											<div class="row">
+												<div class="col-sm-1"><strong>Default</strong></div>
+												<div class="col-sm-4"><strong>Answer</strong></div>
+												<div class="col-sm-5"><strong>If selected, this statement will be added</strong></div>
+											</div>
+										<% end %>
+											<div class="answer-sortable-container">
+											<% to_do.answers.each do |answer| %>
+												<div id="<%= answer.id %>" class="answer-container" data-id="<%= answer.id %>">
+													<div class="row answer-display">
+														<div class="col-sm-1"><input type="checkbox" class="selected" <%= answer.selected ? ' checked="checked"' : '' %>></div>
+														<div class="col-sm-4 answer-content"><%= answer.content %></div>
+														<div class="col-sm-5 answer-statement">
+															<% answer.inspector_statements.each do |statement| #TODO: revisit this if we decide not to allow multiple statements for an answer %>
+																<%= statement.content %> <br>
+															<% end %>
+														</div>
+														<div class="col-sm-2 text-right"><a class="edit-answer" title="Edit answer">Edit</a><a class="delete-answer" title="Delete answer"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></div>
+													</div>
+													<%= render "layouts/edit_answer_form" %>
+												</div>
+											<% end %>
+											</div>
+											<div class="row add-answer-link-container">
+												<div class="col-sm-12">
+													<a class="add-answer">Add answer</a>
+												</div>
+											</div>
+											<div class="row">
+												<%= render "layouts/add_answer", section: section %>
+											</div>
+										</div>
+									<% end %>
+								</div>
+							</div>
+						<% end %>
+						</div>
+						<div class="row add-todo-link-container">
+							<div class="col-sm-12">
+								<a class="add-todo">Add a to-do</a>
+							</div>
+						</div>
+						<%= render "layouts/add_todo", section: section %>
+					</div>
+					<!--<div role="tabpanel" class="tab-pane fade cya-tab" id="<%= section.id %>-cyas">
+						<div class="panel">
+							<div class="panel-body cya-sortable-container">
+							<% section.cyas.each do |cya| %>
+								<div id="cya<%= cya.id %>" class="cya-container" data-id="<%= cya.id %>">
+									<div class="row cya-display">
+										<div class="col-sm-10 cya-content"><%= cya.content %></div>
+										<div class="col-sm-2 text-right"><a class="edit-cya" title="Edit CYA">Edit</a><a class="delete-cya" title="Delete cya"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></div>
+									</div>
+									<%= render "layouts/edit_cya_form" %>
+								</div>
+							<% end %>
+								<div class="row add-cya-container">
+									<div class="col-sm-12">
+										<a class="add-cya">Add CYA</a>
+									</div>
+								</div>
+								<%= render "layouts/add_cya", section: section %>
+							</div>
+						</div>
+					</div>-->
+					<div role="tabpanel" class="tab-pane fade library-tab" id="<%= section.id %>-library">
+						<div class="panel">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-8"><strong>Statement content</strong></div>
+									<div class="col-sm-2"><strong>Keyword(s)</strong></div>
+								</div>
+							<% if section.section_type.inspector_statements.count == 0 %>
+								<div class="row no-statements-message-container">
+									<div class="col-sm-12">You have no statements saved for this section.</div>
+								</div>
+							<% end %>
+								<div class="inspector-statement-sortable">
+								<% section.section_type.inspector_statements.each do |statement| %>
+									<div id="inspectorStatement<%= statement.id %>" class="inspector-statement-container" data-id="<%= statement.id %>" data-statement-type-id="<%= statement.statement_type_id %>">
+										<div class="row inspector-statement-display">
+											<div class="col-sm-8 inspector-statement-content"><%= statement.content %></div>
+											<div class="col-sm-2 keyword-content"><%= statement.keyword %></div>
+											<div class="col-sm-2 text-right"><a class="edit-inspector-statement" role="button" title="Edit statement">Edit</a><a class="delete-inspector-statement" title="Delete statement"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></div>
+										</div>
+										<%= render "layouts/edit_inspector_statement_form" %>
+									</div>
+								<% end %>
+								</div>
+								<div class="row add-inspector-statement-container">
+									<div class="col-sm-12">
+										<a class="add-inspector-statement">Add statement</a>
+									</div>
+								</div>
+								<%= render "layouts/add_inspector_statement", section: section %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>

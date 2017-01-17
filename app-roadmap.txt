@@ -1,0 +1,28 @@
+Priority: create demoable app that allows Andy to experience conducting an inspection
+
+To get there, it needs to:
+
+
+- capture new statments - goal: 9/18 
+- display photos and captions - goal: 9/22
+- capture new photos and captions - goal: 9/25 (need X-Code 7)
+- display answers / answer values - goal: 9/24
+
+Completed
+- display statements
+
+
+
+Deferred
+- ability to delete a statement
+- ability to reorder statements
+
+
+
+Build:
+- ability to use keywords to quickly enter a statement
+	- pick a good UI to try first
+	- build a keyword search
+	- build selection logic so add statement view is populated
+- ability to take a photo and caption
+

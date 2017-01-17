@@ -1,0 +1,19 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Address</th>
+			<th>Date</th>
+			<th>Report Type</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @reports.each do |report| %>
+		<tr>
+			<td><%= report.address_single_line %></td>
+			<td><%= report.inspection_datetime %></td>
+			<td><%= report.report_type.name %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

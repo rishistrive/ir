@@ -1,0 +1,14 @@
+<a href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+<h2>Create a new statement</h2>
+This crappy form is just for testing
+<%= form_for @inspectorStatement, url: {action: "create"} do |f| %>
+	Statement content: <%= f.text_field :content %>
+	Keywords: <%= f.text_field :keyword %>
+	
+	<%= collection_select(:inspector_statement, :section_type_id, @inspector.section_types.all, :id, :name) %>
+	<%= collection_select(:inspector_statement, :statement_type_id, StatementType.all, :id, :name) %>
+	
+	<%= f.submit "Create statement" %>
+	
+	
+<% end %>

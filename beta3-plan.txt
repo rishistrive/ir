@@ -1,0 +1,7 @@
+Tasks:
+
+- bug fixes with layout of pdf
+- flag to turn off statement type labels
+- make sure if there are no statements for a particular type, then the label itself is not displayed
+- photos in app must be better
+- 

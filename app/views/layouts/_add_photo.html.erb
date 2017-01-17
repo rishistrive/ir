@@ -1,0 +1,15 @@
+<div class="add-photo-form-container row">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label for="photo-picker-<%= section.id %>">Photo</label>
+			<input type="file" class="photo-picker form-control" id="photo-picker-<%= section.id %>">
+		</div>
+		<div class="form-group">
+			<label for="caption-<%= section.id %>">Caption</label>
+			<input type="text" class="caption form-control" id="caption-<%= section.id %>" placeholder="Optional caption" />
+		</div>
+		<div class="form-group">
+			<button class="btn btn-sm btn-primary save-photo">Add this photo</button><span class="between-button-text">or</span><button class="btn btn-link btn-sm cancel-photo-save">Cancel</button>
+		</div>
+	</div>
+</div>

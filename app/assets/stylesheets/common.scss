@@ -1,0 +1,15 @@
+$form-background-color: #f5f5f5;
+$form-border-color: #eeeeee;
+
+@mixin form-container {
+	background-color: $form-background-color; 
+	border:1px solid $form-border-color; 
+	border-radius:4px; 
+	padding-top:.5em;	
+}
+
+.between-button-text {padding-left:1em;}
+
+$uneditable-text-color: #737373;
+$accent-color: orange;
+$faint-divider: #efefef;

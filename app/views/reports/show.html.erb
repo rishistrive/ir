@@ -1,0 +1,263 @@
+<div class="report view report-container" data-id="<%= @report.id %>">
+	<div class="row">
+		<div class="col-sm-12">
+			<a href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a><a class="btn btn-primary pull-right create-rei" target="_blank" href="/reports/<%= @report.id %>/rei/">Create REI 7-5</a>
+			<h3><%= @report.address_line_1 %> | <%= @report.report_type.name %></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3 hidden-xs">
+			<nav id="sidebar-nav" class="" data-spy="affix" data-offset-top="128" data-offset-bottom="200">
+				<ul class="top-section nav list-unstyled">
+					<li><a href="#reportHeaderSection">Report Data</a></li>
+				<% 
+				firstSection = true
+				@report.sections.sorted.each do |section| 
+					 if section.level == 0 
+						 if firstSection 
+							firstSection = false
+						 else
+							%></ul></li><%
+						 end %>
+						 <li>
+							 <a href="#section<%= section.id %>"><%= section.section_type.name.truncate(35, separator: ' ') %></a>
+							 <ul class="list-unstyled sub-section">
+					<% elsif section.level == 1 %>
+						<li><a href="#section<%= section.id %>"><%= section.section_type.name.truncate(35, separator: ' ')  %></a></li>
+					<% else %>
+						<li><a href="#section<%= section.id %>">&nbsp;&nbsp;<%= section.section_type.name.truncate(35, separator: ' ')  %></a></li>
+					<% end %>
+				<% end %>
+						</ul>
+					</li>
+					<li><hr></li>
+					<li><a class="create-rei" target="_blank" href="/reports/<%= @report.id %>/rei/">Create REI 7-5</a></li>
+					<li><a class="" target="_blank" href="/reports/<%= @report.id %>/preliminary_assessment/">Create Preliminary Assessment</a></li>
+					<li><a class="" href="/"><span class="glyphicon glyphicon-arrow-left"></span> Back</a></li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-sm-9">
+			<div class="report-header-container level-0">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="section-name"><a id="reportHeaderSection">Report Data</a></div>
+					</div>
+				</div>
+				<div class="row client-name-container">
+					<div class="col-sm-12">
+						<div class="row display-client-name-container">
+							<div class="col-sm-4">Client name</div>
+							<div class="col-sm-6 client-name-display"><%= @report.client_name %></div>
+							<div class="col-sm-2 text-right"><a class="edit-client-name">Edit</a></div>
+						</div>
+						<div class="row client-name-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="client-name">Client name</label>
+									<input type="text" id="client-name" class="client-name form-control" value="<%= @report.client_name %>">
+								</div>
+								<div class="form-group">
+									<button class="save-client-name-update btn btn-sm btn-primary" role="button">Save</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-client-name-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row inspection-date-container">
+					<div class="col-sm-12">
+						<div class="row display-inspection-date-container">
+							<div class="col-sm-4">Inspection Date</div>
+							<div class="col-sm-6 inspection-date-display"><%= @report.inspection_datetime.strftime("%B %d, %Y") %></div>
+							<div class="col-sm-2 text-right"><a class="edit-inspection-date">Edit</a></div>
+						</div>
+						<div class="row inspection-date-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="inspection-date">Inspection Date</label>
+									<input type="date" id="inspection-date" class="inspection-date form-control" value="<%= @report.inspection_datetime.strftime("%-Y-%m-%d") %>">
+								</div>
+								<div class="form-group">
+									<button class="save-inspection-date-update btn btn-sm btn-primary" role="button">Save</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-inspection-date-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row address-container">
+					<div class="col-sm-12">
+						<div class="row display-address-container">
+							<div class="col-sm-4">Property Address</div>
+							<div class="col-sm-6 address-display"><%= @report.address_first_line %><br><%= @report.address_second_line %></div>
+							<div class="col-sm-2 text-right"><a class="edit-address">Edit</a></div>
+						</div>
+						<div class="row address-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="address-line-1">Address Line 1</label>
+									<input type="text" id="address-line-1" class="form-control address-line-1" value="<%= @report.address_line_1 %>">
+								</div>
+								<div class="form-group">
+									<label for="address-line-2">Address Line 2</label>
+									<input type="text" id="address-line-2" class="form-control address-line-2" value="<%= @report.address_line_2 %>">
+								</div>
+								<div class="form-group">
+									<label for="address-line-3">Address Line 3</label>
+									<input type="text" id="address-line-3" class="form-control address-line-3" value="<%= @report.address_line_3 %>">
+								</div>
+								<div class="form-group">
+									<label for="address-line-4">Address Line 4</label>
+									<input type="text" id="address-line-4" class="form-control address-line-4" value="<%= @report.address_line_4 %>">
+								</div>
+								<div class="form-group">
+									<label for="city">City</label>
+									<input type="text" id="city" class="form-control city" value="<%= @report.city %>">
+								</div>
+								<div class="form-group">
+									<label for="state">State</label>
+									<input type="text" id="state" class="form-control state" value="<%= @report.state %>">
+								</div>
+								<div class="form-group">
+									<label for="zip">Zip</label>
+									<input type="text" id="zip" class="form-control zip" value="<%= @report.zip %>">
+								</div>
+								<div class="form-group">
+									<button class="save-address-update btn btn-sm btn-primary" role="button">Save</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-address-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row cover-photo-container">
+					<div class="col-sm-12">
+						<div class="row display-cover-photo-container">
+							<div class="col-sm-4">Cover Photo</div>
+							<div class="col-sm-6 cover-photo-display">
+							<% if @report.cover_image.exists? %>
+								<div id="image" class="image-container" data-cover-photo="true" data-url="<%= @report.cover_image.url(:medium) %>" data-image-id="">
+									<%= image_tag @report.cover_image.url(:thumb) %>
+								</div>
+							</div>
+							<% else %>
+							</div>
+								<div class="col-sm-2 text-right"><a class="edit-cover-photo">Edit</a></div>
+							<% end %>
+						</div>
+						<div class="row add-cover-photo-form-container">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="cover-photo-picker" class="sr-only">Cover Photo</label>
+									<input type="file" class="photo-picker form-control" id="cover-photo-picker">
+								</div>
+								<div class="form-group">
+									<button class="btn btn-sm btn-primary save-cover-photo">Upload cover photo</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-cover-photo-upload btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row scope-container">
+					<div class="col-sm-12">
+						<div class="row display-scope-container">
+							<div class="col-sm-4">Scope</div>
+							<div class="col-sm-6 inspection-scope-display"><%= @report.scope %></div>
+							<div class="col-sm-2 text-right"><a class="edit-inspection-scope">Edit</a></div>
+						</div>
+						<div class="row inspection-scope-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="inspection-scope">Scope</label>
+									<textarea class="form-control" id="inspection-scope" rows="10"><%= @report.scope %></textarea>
+								</div>
+								<div class="form-group">
+									<button class="save-inspection-scope btn btn-sm btn-primary" role="button">Save</button><span class="between-button-text">or</span><button class="cancel-inspection-scope-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row overview-summary-container">
+					<div class="col-sm-12">
+						<div class="row display-overview-summary-container">
+							<div class="col-sm-4">Overview summary</div>
+							<div class="col-sm-6 inspection-overview-summary-display"><%= @report.overview_summary %></div>
+							<div class="col-sm-2 text-right"><a class="edit-inspection-overview-summary">Edit</a></div>
+						</div>
+						<div class="row inspection-overview-summary-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="overview-summary">Overview summary</label>
+									<input type="text" class="inspection-overview-summary form-control" id="overview-summary" value="<%= @report.overview_summary %>">
+								</div>
+								<div class="form-group">
+									<button class="save-inspection-overview-summary-update btn btn-sm btn-primary" role="button">Save</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-inspection-overview-summary-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row overview-container">
+					<div class="col-sm-12">
+						<div class="row display-overview-container">
+							<div class="col-sm-4">Overview</div>
+							<div class="col-sm-6 inspection-overview-display"><%= @report.overview %></div>
+							<div class="col-sm-2 text-right"><a class="edit-inspection-overview">Edit</a></div>
+						</div>
+						<div class="row inspection-overview-update-form">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="overview">Overview</label>
+									<textarea rows="10" class="form-control" id="overview"><%= @report.overview %></textarea>
+								</div>
+								<div class="form-group">
+									<button class="save-inspection-overview-update btn btn-sm btn-primary" role="button">Save</button>
+									<span class="between-button-text">or</span>
+									<button class="cancel-inspection-overview-update btn btn-sm btn-link">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% @report.sections.sorted.each do |section| %>
+				<%= render "layouts/display_section", section: section, template_flag: false, photo_flag: true %>
+			<% end %>
+			<div id="image-editor-modal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Edit Image</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<div id="edit-image-container"></div>
+							</div>
+							<div class="form-group caption-container">
+								<label for="edit-image-caption">Caption</label>
+								<input id="edit-image-caption" type="text" class="form-control">
+								<input id="image-id" type="hidden">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger pull-left delete-photo"><span class="glyphicon glyphicon-trash"></span> &nbsp;Delete image</button>
+							<button type="button" class="btn btn-primary save-photo-edits">Save changes</button>
+							<span class="between-button-text">or</span> 
+							<button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

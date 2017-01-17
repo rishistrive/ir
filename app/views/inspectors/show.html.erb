@@ -1,0 +1,79 @@
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Recent reports<a class="btn btn-primary pull-right" href="/reports/new">Create a new report</a></h2>
+		<table class="table table-condensed table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Cover photo</th>
+					<th>Property address</th>
+					<th>Inspected on</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @inspector.reports.sorted.each do |report| %>
+				<tr class="report-container" data-id="<%= report.id %>">
+					<td>
+					<% if report.cover_image.exists? %>
+						<img src="<%= report.cover_image.url(:thumb) %>" width="40" height="40" alt="Cover Photo" />
+					<% else %>
+						No cover photo
+					<% end %>
+					</td>
+					<td><%= report.address_first_line %><br><%= report.address_second_line %></td>
+					<td><%= report.inspection_datetime.strftime('%b %-d, %Y')  %></td>
+					<td><a href="/reports/<%= report.id %>" class="btn btn-link" data-no-turbolink="true">View</a></td>
+					<!--<td><div class="delete-confimation-container"><button class="btn btn-sm btn-default"></button><button class="btn btn-sm btn-danger">Yes, delete</button></div><div class="delete-intro-container"><a href="/reports/<%= report.id %>" class="btn btn-link delete-report" data-method="delete" data-confirm="Are you sure you want to delete this report?" data-remote="true"><span class="glyphicon glyphicon-trash"></span></a></div></td>-->
+					<td><div class="delete-actions-container"><div class="delete-confirmation-container">Are you sure?<br><button class="btn btn-sm btn-danger delete-report-confirmed">Yes, delete</button><span class="between-button-text">or</span><button class="btn btn-sm btn-link cancel-report-deletion">No, nevermind</button></div><div class="delete-intro-container"><button class="btn btn-link delete-report"><span class="glyphicon glyphicon-trash"></span></button></div></div></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<!--<a href="/reports/">All <%= @inspector.reports.count %> reports</a>-->
+		<br><br>
+		<h2>Inspection templates</h2><!--<a class="btn btn-primary pull-right" href="/inspection_templates/new">Create a new report template</a></h2>-->
+		<table class="table table-condensed table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Template Name</th>
+					<th>Inspection Type</th>
+					<!--<th># Rhythms</th>-->
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @inspector.inspection_templates.each do |template| %>
+				<tr class="template-container" data-id="<%= template.id %>">
+					<td><%= template.name %></td>
+					<td><%= template.report_type.name %></td>
+					<!--<td><%= template.rhythms.count %></td>-->
+					<td><a href="/inspection_templates/<%= template.id %>" class="btn btn-link" data-no-turbolink="true">View</a></td>	
+					<td><div class="delete-actions-container"><div class="delete-confirmation-container">Are you sure?<br><button class="btn btn-sm btn-danger delete-template-confirmed">Yes, delete</button><span class="between-button-text">or</span><button class="btn btn-sm btn-link cancel-template-deletion">No, nevermind</button></div><div class="delete-intro-container"><button class="btn btn-link delete-report"><span class="glyphicon glyphicon-trash"></span></button></div></div></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<!--<a href="/inspection_templates/">All <%= @inspector.inspection_templates.count %> templates</a>-->
+		<!--
+		<br><br>
+		<h2>Statement library<a class="btn btn-primary pull-right" href="/inspector_statements/new">Create new statement</a></h2>
+		<input type="text" class="form-control" id="statement-search" size="60" placeholder="Search statement library by keyword, section name, or statement content...">
+		<br>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3 section"><strong>Section / Type</strong></div>
+	<div class="col-sm-2 keyword"><strong>Keyword(s)</strong></div>
+	<div class="col-sm-5 content"><strong>Statement</strong></div>
+	<div class="col-sm-2 answers"></div>
+</div>
+<div class="search-results">
+	<div class="row">
+		<div class="col-sm-12"></div>
+	</div>
+</div>
+-->
+<!--<a href="/inspector_statements/">All <%= @inspector.inspector_statements.count %> statements</a>-->
+

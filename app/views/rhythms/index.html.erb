@@ -1,0 +1,20 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Rhythm Name</th>
+			<th>Inspector</th>
+			<th>Report Type</th>
+			<th>Template Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @rhythms.each do |rhythm| %>
+		<tr>
+			<td><%= rhythm.name %></td>
+			<td><%= rhythm.inspection_template.inspector.email %></td>
+			<td><%= rhythm.inspection_template.report_type.name %></td>
+			<td><%= rhythm.inspection_template.name %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

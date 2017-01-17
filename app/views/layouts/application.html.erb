@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Andy & Steve's Reports</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body data-spy="scroll" data-target="#sidebar-nav" id="top">
+		<div class="container">
+			<%= render(:partial => "layouts/headernav") %>
+			<%= yield %>
+			<hr>
+			<div class="row">
+				<div class="col-sm-12 text-center small">Made in Austin | &copy; <%= Time.now.strftime "%Y" %>, Andy & Steve's Inspection Reports</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+Editing a template should allow one to:
+
+1.  Make a copy of a template
+2.  Add a subsection to any level 1 section
+3.  Quickly navigate between sections
+4.  See all to-dos, statements (by type), CYAs for a section
+5.  See the to-do type
+6.  See the possible answers available for a to-do
+7.  See the rules associated with each to-do answer
+8.  CRUD: a statement
+9.  CRUD: a to-do
+10. CRUD: a to-do answer
+11. CRUD: a to-do answer rule
+12. CRUD: a CYA
+13. Define a default answer for a to-do
+14. See which answer is the default answer for a to-do
+15. Reorder statements
+16. Reorder to-dos
+17. Reorder answers
+18. Reorder CYAs

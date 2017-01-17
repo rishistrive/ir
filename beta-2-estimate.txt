@@ -1,0 +1,39 @@
+Stuff needed for beta2:
+
+Rails models
+Rails controllers
+Build new inspection view controller
+Build new section view controllers
+
+(completed 11/9/15) Day 1: build all new rails models and controllers and update seeds.rb (3 hours)
+(started 11/10/15) Day 2: set up new inspection application with split-view foundation (3 hours)
+(started 11/10/15) Day 3: build new inspection view controller (3 hours)
+Day 4: complete building new inspection view controller (3 hours)
+(started 11/12/15) Day 5: build new section view controller (3 hours)
+(started 11/13/15) Day 6: continue building new section view controller - add To-Dos view controller (3 hours)
+(started 11/19/15 - completed 11/20/15) Day 7: continue building new section view controller - make completing a to-do run a rule (3 hours)a
+Day 8: continue building new section view controller - make changing a to-do reverse a rule (3 hours)
+Day 9: continue building new section view controller - build CYAs view (3 hours)
+Day 10: build new issue view controller (3 hours)
+Day 11: build automated switching to next section according to rhythm (3 hours)
+
+Remaining things to do:
+build rhythm section navigation
+make completing a CYA work
+make changing a to-do reverse a rule
+make to-dos work differently based on types
+
+
+
+Known bugs to sort out (but maybe not right away):
+CYAs don't update their status on the server when completed / uncompleted
+
+---Rhythm section navigation dev steps---
+
+[x]  button to go back - i think the nav will be better if you could scroll through the entire list of sections.
+[x]  make the section buttons link to an action
+[x]  button to go forward
+going back / forward loads another section
+pull down rhythm for server and store in core data (probably pull this when the inspection is viewed?)
+going back / forward loads the correct section
+

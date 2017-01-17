@@ -1,0 +1,187 @@
+// Place all the styles related to the Templates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	position:relative;
+}
+#sidebar-nav {
+	a {
+		color:inherit;
+	}
+	.nav>li>a {
+		padding:1px 0px 1px 10px;
+		font-weight: 400;
+	}
+	
+	.sub-section {
+		display:none;
+		//padding-left:20px;
+	}
+
+	.top-section {
+		>li.active {
+			>a {
+				border-left: 2px solid $accent-color;
+				color: #23527c;
+				padding-left: 8px;
+			}
+			.sub-section {
+				display:block;
+				
+				li {
+					padding-left: 20px;
+				}
+				li.active {
+					border-left: 1px solid $accent-color;
+					color: #23527c;
+					padding-left: 19px;
+				}
+			}
+		}
+	}
+}
+.affix {
+	top:20px;
+}
+.affix-top {
+	//position:fixed;
+	//top:20px;
+}
+.affix-bottom {
+	top:20px;
+	position:fixed;
+}
+.affix, .affix-top, .affix-bottom {
+	//position:fixed;
+	//width:100%;
+}
+
+
+.edit-template-name-container { display:none; }
+.template-name { font-size:2.0em; }
+.todo-container {
+	//border-bottom:1px solid $faint-divider;
+	//padding-bottom: 5px;
+	margin-bottom:5px;
+}
+.level-0 {
+	margin-bottom:1em;
+	.section-name {
+		font-size:1.8em;
+		a {
+		color: inherit;
+		text-decoration:none;
+		}
+	}
+}
+.level-1 {
+	margin-top:1em;
+	.section-name {
+		font-size:1.4em;
+		margin-bottom:.5em;
+		a {color: inherit; text-decoration:none;}
+}
+}
+.level-2 {
+	margin-top:1em;
+	margin-left:2em;
+	.section-name {
+		font-size:1.4em;
+		a {color: inherit; text-decoration:none;}
+	}
+}
+.statements-container {
+	margin-top: 1.9em;
+}
+.statement-container {
+	position:relative;
+	margin-bottom:.5em;
+	margin-left:1em;
+}
+.statement-type-label {
+	color: $uneditable-text-color;
+	font-size:1em;
+	letter-spacing:1px;
+	margin:.3em 0;
+}
+
+.delete-statement {margin-right:.8em;}
+.server-message-container {position:fixed; bottom:0;}
+.server-message {opacity:.85;  z-index:100;}
+
+.section-name {}
+
+.add-buttons-container {clear:left;}
+
+.add-todo {cursor:pointer;}
+.edit-todo-form-container {display:none; }
+.add-todo-form-container {display:none; @include form-container;}
+.delete-todo {cursor:pointer;}
+
+.add-answer {cursor:pointer;}
+.add-answer-form-container {display:none; @include form-container;}
+.edit-answer {cursor:pointer; margin-right:1em;}
+.edit-answer-form-container {display:none; @include form-container;}
+
+.add-statement {cursor:pointer;}
+
+.edit-statement {cursor:pointer; margin-right:1em;}
+.edit-statement-form-container {display:none; @include form-container;}
+.add-statement-form-container {display:none; @include form-container;}
+
+.library-statement-selection-container {
+	cursor: pointer;
+	margin-bottom:.75em;
+	.keyword-display {
+		margin: .25em 0 .5em 0;
+		.prompt { font-weight:strong; }
+	}
+}
+
+.add-cya {cursor:pointer;}
+.add-cya-form-container {display:none; @include form-container;}
+.edit-cya {cursor:pointer; margin-right:1em;}
+.edit-cya-form-container {display:none; @include form-container;}
+.delete-cya {cursor:pointer;}
+
+.add-inspector-statement {cursor:pointer;}
+.add-inspector-statement-form-container {display:none; @include form-container;}
+.delete-inspector-statement {cursor:pointer;}
+.edit-inspector-statement {cursor:pointer; margin-right:1em;}
+.edit-inspector-statement-form-container {display:none; @include form-container;}
+.inspector-statement-display {margin-bottom: .6em;}
+
+.add-photo {cursor:pointer; margin-left:1em;}
+.add-photo-form-container {display:none; @include form-container;}
+
+.edit-client-name {cursor:pointer;}
+.client-name-update-form {display:none; @include form-container;}
+
+.edit-inspection-date {cursor:pointer;}
+.inspection-date-update-form {display:none; @include form-container;}
+
+.edit-address {cursor:pointer;}
+.address-update-form {display:none; @include form-container;}
+
+.edit-cover-photo {cursor:pointer;}
+.add-cover-photo-form-container {display:none; @include form-container;}
+
+.edit-inspection-scope {cursor:pointer;}
+.inspection-scope-update-form {display:none; @include form-container;}
+.edit-inspection-overview-summary {cursor:pointer;}
+.inspection-overview-summary-update-form {display:none; @include form-container;}
+.edit-inspection-overview {cursor:pointer;}
+.inspection-overview-update-form {display:none; @include form-container;}
+
+.image-thumbnails-container {
+	margin-left:1em;
+	//min-height:120px; 
+	width:230px;}
+
+.image-container {cursor:pointer; display:inline-block; float:left; margin-right: 1em; margin-bottom: 1em; vertical-align:top;}
+
+.checkbox-container {padding-top:.3em;}
+
+.statement-sortable-target {background-color:$form-background-color; border:1px solid $form-border-color; height:6em; margin-left:.5em;}
+
+.image-sortable-target {background-color:$form-background-color; border:1px solid $form-border-color; height:100px; float: none; width:100px;}

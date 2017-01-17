@@ -1,0 +1,50 @@
+<div class="row">
+	<div class="col-sm-5">
+		<h2>Statement Library &nbsp;<button class="btn btn-primary">Create new statement</button></h2>
+	</div>
+	<div class="col-sm-7 text-left">
+		<h2><!-- TODO: clean up this unnecessary h2 w/ CSS for margins -->
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+			<input class="form-control" type="text" id="statement-search" size="100" placeholder="Search statement library by keyword, section name, statement content...">
+		</div>
+		</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-2 section">Section / Type</div>
+	<div class="col-sm-2 keyword">Keyword(s)</div>
+	<div class="col-sm-8 content">Statement</div>
+</div>
+<div class="search-results">
+	
+</div>
+<!--<a href="#">View all ### statements in the library</a>-->
+
+
+
+<!--
+<table class="table">
+	<thead>
+		<tr>
+			<th>Type</th>
+			<th>Content</th>
+			<th>Keyword</th>
+			<th>Section</th>
+			<th>Severity</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @inspectorStatements.each do |inspectorStatement| %>
+		<tr>
+			<td><%= inspectorStatement.statement_type.name %></td>
+			<td><%= inspectorStatement.content %></td>
+			<td><%= inspectorStatement.keyword %></td>
+			<td><%= inspectorStatement.section_type.name %></td>
+			<td><%= inspectorStatement.severity %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+-->

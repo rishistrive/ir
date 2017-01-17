@@ -1,0 +1,19 @@
+// Place all the styles related to the Statements controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-results{
+	
+	
+}
+
+.statement-controls > a {cursor:pointer;}
+
+//.inspector-statement-container {margin:.5em 0;}
+
+.edit-inspector-statement-container {
+	display:none;
+	@include form-container;
+}
+
+option.level-1 {margin-left:1em;}
